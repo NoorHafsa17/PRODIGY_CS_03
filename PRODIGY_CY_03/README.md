@@ -61,20 +61,20 @@ PRODIGY_CY_03/
 
 5. Running the Project
 > Backend
-pip install fastapi uvicorn
-uvicorn server:app --reload
+- pip install fastapi uvicorn
+- uvicorn server:app --reload
 
 
 > Runs at:
-http://127.0.0.1:8000
+- http://127.0.0.1:8000
 
 > Frontend
-cd web
-python -m http.server 8080
+- cd web
+- python -m http.server 8080
 
 
-> Open:
-http://127.0.0.1:8080
+> Open in Browser:
+- http://127.0.0.1:8080
 
 6. API Usage
 POST /check
