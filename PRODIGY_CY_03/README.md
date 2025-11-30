@@ -1,13 +1,12 @@
 NextGen Password Strength & Attack-Model Analyzer
 <p> <img src="https://img.shields.io/badge/Category-Cybersecurity-blueviolet"> <img src="https://img.shields.io/badge/Backend-FastAPI-009688"> <img src="https://img.shields.io/badge/Frontend-HTML%2FJS-blue"> <img src="https://img.shields.io/badge/Security-Attacker--Model-critical"> <img src="https://img.shields.io/badge/Password%20Cracking-PCFG%20%7C%20Entropy-green"> </p>
 
-A password-strength engine built using real attacker modeling, not naive entropy checks.
-It identifies word structures, CamelCase, multi-word passphrases, pronounceable patterns,
+A password-strength engine built using real attacker modeling.
+Detects human-word structures, CamelCase, multi-word passphrases, pronounceable patterns,
 keyboard sequences, and PCFG-style guess patterns — even for invented words.
 
 1. Overview
 
-Traditional password checkers give false results because they rely only on length or entropy.
 This tool analyses passwords the way attackers actually do:
 
 Human-word structure detection
@@ -26,8 +25,6 @@ PCFG-like structure scoring
 
 Realistic time-to-crack (10M guesses/sec)
 
-It produces accurate strength, realistic crack times, and validated strong suggestions.
-
 2. Features
 Word & Pattern Detection
 
@@ -35,13 +32,13 @@ Detects invented words (e.g., OrbitSilentRocket)
 
 Flags CamelCase
 
-Detects readable multi-word strings
+Detects multi-word strings
 
 Finds pronounceable vowel–consonant patterns
 
-Detects keyboard sequences (qwerty, asdf)
+Detects keyboard sequences
 
-Identifies repetition / date-like segments
+Identifies repetition and date-like segments
 
 Attack-Model Scoring
 
@@ -49,13 +46,13 @@ Shannon entropy
 
 Word-rank based guess modeling
 
-Mutation / hybrid attack logic
+Mutation and hybrid attack modeling
 
 Pattern-based cracking heuristics
 
-Conservative caps for human-readable forms
+Conservative caps for human-readable strings
 
-Validated Strong Suggestions
+Strong Suggestions
 
 High-entropy random strings
 
@@ -63,16 +60,17 @@ Diceware-hybrid passphrases
 
 Rare-word + mutation patterns
 
-Suggestions validated to ≥ 10¹² guesses
-
-All outputs checked to avoid word-like structures
+Validated to ≥ 10¹² guesses
 
 3. Tech Stack
+
+Below is a GitHub-safe table that WILL render:
+
 Component	Technology
 Backend	FastAPI, Uvicorn
 Frontend	HTML, CSS, JavaScript
 Security RNG	Python secrets
-Modeling Approach	Entropy + Word-pattern + PCFG-style
+Model	Entropy + Word-pattern + PCFG-style
 4. Project Structure
 PRODIGY_CY_03/
 ├── server.py
@@ -88,24 +86,30 @@ pip install fastapi uvicorn
 uvicorn server:app --reload
 
 
-Server → http://127.0.0.1:8000
+Runs at:
+http://127.0.0.1:8000
 
 Frontend
 cd web
 python -m http.server 8080
 
 
-Frontend → http://127.0.0.1:8080
+Open:
+http://127.0.0.1:8080
 
 6. API Usage
 POST /check
+
 Request
+
 {
   "password": "Hello@123",
   "leaked": false
 }
 
+
 Response
+
 {
   "score": 42,
   "label": "Fair",
@@ -117,16 +121,16 @@ Response
 }
 
 7. Why This Tool Is Different
+
+This table will render correctly:
+
 Capability	Typical Checkers	This Tool
-Detect invented/human words	✖	✔
-Detect CamelCase	✖	✔
-Pronounceability detection	✖	✔
-PCFG-style modeling	✖	✔
-Realistic crack-time	✖	✔
-Validated strong suggestions	✖	✔
-
-Uses attacker strategy modeling, not superficial entropy-based scoring.
-
+Detect invented/human words	No	Yes
+Detect CamelCase	No	Yes
+Pronounceability detection	No	Yes
+PCFG-style modeling	No	Yes
+Realistic crack-time	No	Yes
+Validated strong suggestions	No	Yes
 8. Use Cases
 
 Cybersecurity awareness
@@ -141,9 +145,9 @@ Developer security reviews
 
 College / internship projects
 
-Research demonstrations
+Research demos
 
 9. Final Notes
 
-This project applies an offensive-security mindset, evaluating passwords through
-structure, patterns, entropy, and attacker behavior, not simple rules.
+This project evaluates passwords using attacker-style logic:
+structure, patterns, entropy, and guess-modeling — not simple rules.
