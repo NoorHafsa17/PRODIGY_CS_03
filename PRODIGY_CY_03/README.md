@@ -1,101 +1,104 @@
 NextGen Password Strength & Attack-Model Analyzer
 <p> <img src="https://img.shields.io/badge/Category-Cybersecurity-blueviolet"> <img src="https://img.shields.io/badge/Backend-FastAPI-009688"> <img src="https://img.shields.io/badge/Frontend-HTML%2FJS-blue"> <img src="https://img.shields.io/badge/Security-Attacker--Model-critical"> <img src="https://img.shields.io/badge/Password%20Cracking-PCFG%20%7C%20Entropy-green"> </p>
 
-A password-strength engine that uses attacker-realistic models instead of only entropy or character checks.
-It detects human-word structures, CamelCase, multi-word passphrases, keyboard patterns, pronounceable strings, and PCFG-style patterns—even for invented words like OrbitSilentRocket.
+A password-strength engine built using real attacker models, not superficial checks.
+Analyzes word patterns, CamelCase, multi-word passphrases, keyboard sequences,
+vowel–consonant human-readable patterns, and PCFG-style guess modeling.
 
-Built with FastAPI, Python, and secure randomness using secrets.
+Designed for realistic password auditing.
 
 1. Overview
 
-Most password checkers give misleading results.
-This tool evaluates passwords using:
+Typical password checkers only measure entropy or length.
+This tool performs attacker-style analysis, including:
 
 Word-like structure detection
 
-PCFG pattern modeling
+Multi-word/CamelCase detection
 
-Dictionary + mutation attack simulation
+Dictionary + mutation modeling
 
-Shannon entropy
-
-Keyboard and date-pattern detection
-
-Realistic crack-time estimation (based on 10M guesses/sec)
-
-Validated strong password suggestions
-
-This reflects how real attackers guess passwords.
-
-2. Key Features
-Human-Word Detection
-
-Detects invented human-readable words
-
-Flags multi-word passphrases
-
-Flags CamelCase compositions
-
-Detects pronounceable vowel-consonant patterns
-
-Attack-Model Scoring
-
-Word-based ranking
-
-Pattern-based cracking
+Shannon entropy estimation
 
 Keyboard sequence detection
 
-Repeated-character detection
+Pattern-based attack guessing
 
-Hybrid entropy + attacker modeling
+Time-to-crack simulation (10M guesses/sec)
 
-Smart Suggestions
+Strong suggestion generation with validation
+
+2. Features
+Word & Pattern Detection
+
+Detects invented human-like words
+
+Flags multi-word passphrases
+
+Finds CamelCase segments
+
+Detects pronounceable vowel/consonant patterns
+
+Identifies keyboard sequences (qwerty, asdf)
+
+Detects dates and repeated sequences
+
+Hybrid Strength Scoring
+
+Entropy-based calculation
+
+PCFG-inspired cracking heuristics
+
+Word-ranking based guess simulation
+
+Penalties for human-readable structures
+
+Realistic guess caps to avoid misleading scores
+
+Strong Suggestion Generator
 
 High-entropy random passwords
 
 Diceware-hybrid passphrases
 
-All suggestions validated to meet ≥ 10¹² guess threshold
+Rare-word + mutation combinations
 
-Ensures suggestions are not word-like or predictable
+All suggestions validated against the attacker model
 
 3. Tech Stack
-Layer	Technology
-Backend	FastAPI, Uvicorn
+Component	Technology
+Backend	FastAPI + Uvicorn
 Frontend	HTML, CSS, JavaScript
 Security RNG	Python secrets
-Strength Model	Entropy + PCFG-like + Pattern Detection
+Modeling Approach	Entropy + Word-pattern + PCFG-style
 4. Project Structure
 PRODIGY_CY_03/
-│── server.py            # Backend (FastAPI) - password analysis engine
+│── server.py
 │── web/
-│     ├── index.html     # Frontend UI
-│     ├── style.css      # UI styling
-│     └── script.js      # API communication + UI logic
+│     ├── index.html
+│     ├── style.css
+│     └── script.js
 └── README.md
 
-5. How to Run
+5. Installation & Running
 Backend
 pip install fastapi uvicorn
 uvicorn server:app --reload
 
 
-Backend available at:
-http://127.0.0.1:8000
+Backend: http://127.0.0.1:8000
 
 Frontend
 cd web
 python -m http.server 8080
 
 
-Open in browser:
-http://127.0.0.1:8080
+Frontend: http://127.0.0.1:8080
 
 6. API Usage
 POST /check
 
-Request
+Request:
 
 {
   "password": "Hello@123",
@@ -103,7 +106,7 @@ Request
 }
 
 
-Response (example)
+Response (example):
 
 {
   "score": 42,
@@ -116,34 +119,33 @@ Response (example)
 }
 
 7. Why This Tool Is Different
-Capability	Normal Checkers	This Tool
+Feature	Typical Checkers	This Tool
 Detect invented words	✖	✔
 Detect CamelCase	✖	✔
-Detect pronounceable patterns	✖	✔
-Pattern-based attacker model	✖	✔
-Realistic crack-time	✖	✔
-Validated strong suggestions	✖	✔
+Pronounceability detection	✖	✔
+PCFG-like modeling	✖	✔
+Realistic time-to-crack	✖	✔
+Validated suggestions	✖	✔
 
-This tool treats passwords the way attackers do—through structure, patterns, and guessability.
+This project applies real attacker logic, not superficial checks.
 
 8. Use Cases
 
-Cybersecurity audits
+Cybersecurity awareness
 
-Pen-testing tools
+Password policy testing
 
-Password policy validation
+Pen-testing utilities
 
-Developer security checks
+Enterprise auditing
 
-Awareness programs
+College cybersecurity projects
 
-College projects
+Developer security review
 
-Internship submissions
-
-Security research demos
+Internship/portfolio project
 
 9. Final Notes
 
-This project is built with an offensive-security mindset, combining entropy, human-pattern detection, and hybrid attack simulation for accurate password evaluation.
+This engine combines entropy metrics, human-pattern detection,
+and hybrid attack modeling to give realistic password evaluations.
