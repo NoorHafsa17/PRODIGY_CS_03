@@ -7,94 +7,73 @@ keyboard sequences, and PCFG-style guess patterns — even for invented words.
 
 1. Overview
 
-This tool analyses passwords the way attackers actually do:
+▪︎ Human-word structure detection  
+▪︎ CamelCase / multi-word splitting  
+▪︎ Dictionary + mutation modeling  
+▪︎ Entropy + character diversity scoring  
+▪︎ Keyboard patterns  
+▪︎ Date patterns  
+▪︎ PCFG-like structure scoring  
+▪︎ Realistic time-to-crack (10M guesses/sec)  
 
-Human-word structure detection
-
-CamelCase / multi-word splitting
-
-Dictionary + mutation modeling
-
-Entropy + character diversity scoring
-
-Keyboard patterns
-
-Date patterns
-
-PCFG-like structure scoring
-
-Realistic time-to-crack (10M guesses/sec)
 
 2. Features
-Word & Pattern Detection
+> Word & Pattern Detection
 
-Detects invented words (e.g., OrbitSilentRocket)
+• Detects invented words (e.g., OrbitSilentRocket)  
+• Flags CamelCase  
+• Detects multi-word strings  
+• Finds pronounceable vowel–consonant patterns  
+• Detects keyboard sequences  
+• Identifies repetition and date-like segments  
 
-Flags CamelCase
 
-Detects multi-word strings
+> Attack-Model Scoring
 
-Finds pronounceable vowel–consonant patterns
+• Shannon entropy  
+• Word-rank based guess modeling  
+• Mutation and hybrid attack modeling  
+• Pattern-based cracking heuristics  
+• Conservative caps for human-readable strings  
 
-Detects keyboard sequences
+> Strong Suggestions
 
-Identifies repetition and date-like segments
+• High-entropy random strings  
+• Diceware-hybrid passphrases  
+• Rare-word + mutation patterns  
+• Validated to ≥ 10¹² guesses  
 
-Attack-Model Scoring
-
-Shannon entropy
-
-Word-rank based guess modeling
-
-Mutation and hybrid attack modeling
-
-Pattern-based cracking heuristics
-
-Conservative caps for human-readable strings
-
-Strong Suggestions
-
-High-entropy random strings
-
-Diceware-hybrid passphrases
-
-Rare-word + mutation patterns
-
-Validated to ≥ 10¹² guesses
 
 3. Tech Stack
 
-Below is a GitHub-safe table that WILL render:
+| Component    | Technology                           |
+|--------------|---------------------------------------|
+| Backend      | FastAPI, Uvicorn                     |
+| Frontend     | HTML, CSS, JavaScript                |
+| Security RNG | Python `secrets`                     |
+| Model        | Entropy + Word-pattern + PCFG-style  |
 
-Component	Technology
-Backend	FastAPI, Uvicorn
-Frontend	HTML, CSS, JavaScript
-Security RNG	Python secrets
-Model	Entropy + Word-pattern + PCFG-style
 4. Project Structure
 PRODIGY_CY_03/
 ├── server.py
-├── web/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── index.html
 └── README.md
 
 5. Running the Project
-Backend
+>> Backend
 pip install fastapi uvicorn
 uvicorn server:app --reload
 
 
-Runs at:
+>> Runs at:
 http://127.0.0.1:8000
 
-Frontend
+>> Frontend
 cd web
 python -m http.server 8080
 
 
-Open:
+>> Open:
 http://127.0.0.1:8080
 
 6. API Usage
@@ -133,17 +112,14 @@ Response
 
 8. Use Cases
 
-Cybersecurity awareness
+• Cybersecurity awareness  
+• Password audits  
+• Pen-testing tools  
+• Enterprise password validation  
+• Developer security reviews  
+• College / internship projects  
 
-Password audits
 
-Pen-testing tools
-
-Enterprise password validation
-
-Developer security reviews
-
-College / internship projects
 
 Research demos
 
