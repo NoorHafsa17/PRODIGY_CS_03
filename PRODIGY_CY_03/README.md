@@ -26,7 +26,7 @@ PCFG-like structure scoring
 
 Realistic time-to-crack (10M guesses/sec)
 
-It produces accurate strength, realistic crack times, and security-validated suggestions.
+It produces accurate strength, realistic crack times, and validated strong suggestions.
 
 2. Features
 Word & Pattern Detection
@@ -37,11 +37,11 @@ Flags CamelCase
 
 Detects readable multi-word strings
 
-Finds pronounceable vowel-consonant patterns
+Finds pronounceable vowel–consonant patterns
 
-Keyboard sequences (qwerty, asdf)
+Detects keyboard sequences (qwerty, asdf)
 
-Repetition / date-like segments
+Identifies repetition / date-like segments
 
 Attack-Model Scoring
 
@@ -49,7 +49,7 @@ Shannon entropy
 
 Word-rank based guess modeling
 
-Mutation / hybrid attacks
+Mutation / hybrid attack logic
 
 Pattern-based cracking heuristics
 
@@ -63,9 +63,9 @@ Diceware-hybrid passphrases
 
 Rare-word + mutation patterns
 
-All suggestions validated to ≥ 10¹² guesses
+Suggestions validated to ≥ 10¹² guesses
 
-Ensures suggestions are not word-like
+All outputs checked to avoid word-like structures
 
 3. Tech Stack
 Component	Technology
@@ -88,30 +88,24 @@ pip install fastapi uvicorn
 uvicorn server:app --reload
 
 
-Runs at:
-http://127.0.0.1:8000
+Server → http://127.0.0.1:8000
 
 Frontend
 cd web
 python -m http.server 8080
 
 
-Open in browser:
-http://127.0.0.1:8080
+Frontend → http://127.0.0.1:8080
 
 6. API Usage
 POST /check
-
 Request
-
 {
   "password": "Hello@123",
   "leaked": false
 }
 
-
-Response (example)
-
+Response
 {
   "score": 42,
   "label": "Fair",
@@ -131,7 +125,7 @@ PCFG-style modeling	✖	✔
 Realistic crack-time	✖	✔
 Validated strong suggestions	✖	✔
 
-This system models attacker strategies, not just entropy, giving real-world accuracy.
+Uses attacker strategy modeling, not superficial entropy-based scoring.
 
 8. Use Cases
 
@@ -147,9 +141,9 @@ Developer security reviews
 
 College / internship projects
 
-Research demos
+Research demonstrations
 
 9. Final Notes
 
-This project applies offensive-security mindset thinking:
-passwords are evaluated through pattern, structure, entropy, and attacker behavior — not through simple rules.
+This project applies an offensive-security mindset, evaluating passwords through
+structure, patterns, entropy, and attacker behavior, not simple rules.
