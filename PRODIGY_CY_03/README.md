@@ -5,7 +5,7 @@ A password-strength engine built using real attacker modeling.
 Detects human-word structures, CamelCase, multi-word passphrases, pronounceable patterns,
 keyboard sequences, and PCFG-style guess patterns — even for invented words.
 
-1. Overview
+## Overview
 
 ▪︎ Human-word structure detection  
 ▪︎ CamelCase / multi-word splitting  
@@ -17,7 +17,7 @@ keyboard sequences, and PCFG-style guess patterns — even for invented words.
 ▪︎ Realistic time-to-crack (10M guesses/sec)  
 
 
-2. Features
+## Features
 > Word & Pattern Detection
 
 • Detects invented words (e.g., OrbitSilentRocket)  
@@ -44,7 +44,7 @@ keyboard sequences, and PCFG-style guess patterns — even for invented words.
 • Validated to ≥ 10¹² guesses  
 
 
-3. Tech Stack
+## Tech Stack
 
 | Component    | Technology                           |
 |--------------|---------------------------------------|
@@ -53,13 +53,13 @@ keyboard sequences, and PCFG-style guess patterns — even for invented words.
 | Security RNG | Python `secrets`                     |
 | Model        | Entropy + Word-pattern + PCFG-style  |
 
-4. Project Structure
+## Project Structure
 PRODIGY_CY_03/
 ├── server.py
 ├── index.html
 └── README.md
 
-5. Running the Project
+## Running the Project
 > Backend
 - pip install fastapi uvicorn
 - uvicorn server:app --reload
@@ -76,7 +76,7 @@ PRODIGY_CY_03/
 > Open in Browser:
 - http://127.0.0.1:8080
 
-6. API Usage
+## API Usage
 POST /check
 
 Request
@@ -99,7 +99,7 @@ Response
   "suggestions": [...]
 }
 
-7. Why This Tool Is Different
+## Why This Tool Is Different
 
 | Capability                  | Typical Checkers | This Tool |
 |-----------------------------|------------------|-----------|
@@ -110,7 +110,7 @@ Response
 | Realistic crack-time        | No               | Yes       |
 | Validated strong suggestions| No               | Yes       |
 
-8. Use Cases
+## Use Cases
 
 • Cybersecurity awareness  
 • Password audits  
@@ -120,7 +120,7 @@ Response
 • College / internship projects  
 
 
-9. Final Notes
+## Final Notes
 
 This project evaluates passwords using attacker-style logic:
 structure, patterns, entropy, and guess-modeling — not simple rules.
