@@ -1,120 +1,99 @@
-🚀 NextGen Password Complexity Checker
-AI-Driven | Word-Pattern Detection | Attack-Simulation | Realistic Time-to-Crack | Smart Fix Suggestions
+NextGen Password Strength & Attack-Model Analyzer
+<p> <img src="https://img.shields.io/badge/Category-Cybersecurity-blueviolet"> <img src="https://img.shields.io/badge/Backend-FastAPI-009688"> <img src="https://img.shields.io/badge/Frontend-HTML%2FJS-blue"> <img src="https://img.shields.io/badge/Security-Attacker--Model-critical"> <img src="https://img.shields.io/badge/Password%20Cracking-PCFG%20%7C%20Entropy-green"> </p>
 
-This project is Task-03 for PRODIGY CYBERSECURITY Internship, but implemented like a real security engineer would build a production-grade password auditor.
+A password-strength engine that uses attacker-realistic models instead of only entropy or character checks.
+It detects human-word structures, CamelCase, multi-word passphrases, keyboard patterns, pronounceable strings, and PCFG-style patterns—even for invented words like OrbitSilentRocket.
 
-Unlike normal password checkers that only check length and symbols, this tool performs:
+Built with FastAPI, Python, and secure randomness using secrets.
 
-✔ Human-word detection (unknown invented words, CamelCase, multi-word passphrases)
-✔ PCFG-aware guess modeling
-✔ Dictionary, pattern, keyboard, date-pattern detection
-✔ Shannon entropy + hybrid attacker model
-✔ Simulated brute-force, pattern-based and word-based cracking models
-✔ Time-to-crack estimation based on real attacker speeds
-✔ Smart password suggestions that are validated for strength
-✔ Secure passphrase generator (diceware-style + high entropy mutations)
+1. Overview
 
-This tool is built using FastAPI (backend) + HTML/CSS/JS (frontend).
+Most password checkers give misleading results.
+This tool evaluates passwords using:
 
-⭐ Features
-🔍 Advanced Password Analysis
+Word-like structure detection
 
-Detects:
+PCFG pattern modeling
 
-Word-like passwords (even if they are NOT in dictionary)
-
-CamelCase human names or invented words
-
-Multi-word passphrases (OrbitSilentRocket)
-
-Pronounceable human-like strings
-
-Keyboard patterns (qwerty, asdf)
-
-Leet speak: p@ssw0rd → flagged
-
-Repetitive sequences
-
-Date-like patterns (1999, 2022)
-
-🔐 Hybrid Strength Scoring
-
-Uses:
+Dictionary + mutation attack simulation
 
 Shannon entropy
 
-Character category variety
+Keyboard and date-pattern detection
 
-Word-based guessing model
+Realistic crack-time estimation (based on 10M guesses/sec)
 
-Pattern-based model
+Validated strong password suggestions
 
-Penalty for human-readable structures
+This reflects how real attackers guess passwords.
 
-Conservative caps to avoid misleading "Strong" labels
+2. Key Features
+Human-Word Detection
 
-⚡ Time-to-Crack Estimation
+Detects invented human-readable words
 
-Based on 10M guesses/sec attacker speed, supporting:
+Flags multi-word passphrases
 
-brute force
+Flags CamelCase compositions
 
-hybrid dictionary
+Detects pronounceable vowel-consonant patterns
 
-word-mutation attacks
+Attack-Model Scoring
 
-🧠 Smart Suggestion Generator
+Word-based ranking
 
-Produces only high-entropy, non-word-like, validated strong passwords.
+Pattern-based cracking
 
-Includes:
+Keyboard sequence detection
 
-random high-entropy variants
+Repeated-character detection
 
-diceware-hybrid generator
+Hybrid entropy + attacker modeling
 
-mutated rare-word generator
+Smart Suggestions
 
-strength-checked replacements
+High-entropy random passwords
 
-Suggestions are validated to meet a minimum cracking threshold (≥ 10¹² guesses).
+Diceware-hybrid passphrases
 
-🛠 Built With
+All suggestions validated to meet ≥ 10¹² guess threshold
 
-FastAPI (backend API)
+Ensures suggestions are not word-like or predictable
 
-JavaScript frontend
+3. Tech Stack
+Layer	Technology
+Backend	FastAPI, Uvicorn
+Frontend	HTML, CSS, JavaScript
+Security RNG	Python secrets
+Strength Model	Entropy + PCFG-like + Pattern Detection
+4. Project Structure
+PRODIGY_CY_03/
+│── server.py            # Backend (FastAPI) - password analysis engine
+│── web/
+│     ├── index.html     # Frontend UI
+│     ├── style.css      # UI styling
+│     └── script.js      # API communication + UI logic
+└── README.md
 
-HTML5 + CSS3
-
-Uvicorn (server)
-
-
-⚙️ How to Run Locally
-1️⃣ Install dependencies
+5. How to Run
+Backend
 pip install fastapi uvicorn
-
-2️⃣ Start Backend
 uvicorn server:app --reload
 
 
-Server runs at:
-👉 http://127.0.0.1:8000
+Backend available at:
+http://127.0.0.1:8000
 
-3️⃣ Start Frontend
-
-From the web/ folder:
-
+Frontend
+cd web
 python -m http.server 8080
 
 
 Open in browser:
-👉 http://127.0.0.1:8080
+http://127.0.0.1:8080
 
-🧪 API Usage
+6. API Usage
 POST /check
-
-Analyze password strength.
 
 Request
 
@@ -124,77 +103,47 @@ Request
 }
 
 
-Response
+Response (example)
 
 {
-  "score": 45,
+  "score": 42,
   "label": "Fair",
-  "reasons": ["low entropy"],
-  "entropy_bits": 22.3,
+  "entropy_bits": 21.9,
   "guesses_estimate": 43000000,
   "ttc": "4.9 hours",
-  "suggestions": [
-     {
-       "example": "Luna!X4$92@qW...",
-       "score": 95,
-       "label": "Strong",
-       "ttc": "115.7 days",
-       "why": "auto-generated strong password",
-       "cost": "replace"
-     }
-  ]
+  "reasons": ["low entropy"],
+  "suggestions": [...]
 }
 
-🛡 Why This Checker Is Superior (Compared to Normal Tools)
+7. Why This Tool Is Different
+Capability	Normal Checkers	This Tool
+Detect invented words	✖	✔
+Detect CamelCase	✖	✔
+Detect pronounceable patterns	✖	✔
+Pattern-based attacker model	✖	✔
+Realistic crack-time	✖	✔
+Validated strong suggestions	✖	✔
 
-Normal checkers fail because they:
+This tool treats passwords the way attackers do—through structure, patterns, and guessability.
 
-Mark OrbitSilentRocket! as Strong (WRONG)
+8. Use Cases
 
-Mark Hello11@123# as Strong (WRONG)
+Cybersecurity audits
 
-Think invented words are unguessable (WRONG)
+Pen-testing tools
 
-Use only entropy → attacker doesn’t care about entropy (WRONG)
+Password policy validation
 
-This tool:
-✔ detects invented words
-✔ blocks all readable word patterns
-✔ uses conservative attacker modeling
-✔ shows realistic time-to-crack
-✔ ensures suggestions are truly strong
+Developer security checks
 
-🎯 Use Cases
+Awareness programs
 
-User password auditing
+College projects
 
-Security awareness tools
+Internship submissions
 
-Enterprise password policy enforcement
+Security research demos
 
-College cybersecurity projects
+9. Final Notes
 
-Internship task submission
-
-Recruiter portfolio project
-
-GitHub project to showcase real cybersecurity engineering skills
-
-🏁 Conclusion
-
-This project is not just a “Task-03” submission —
-it is a weapon-grade password evaluation engine built like a real infosec engineer.
-
-It demonstrates:
-
-attacker mindset
-
-secure coding
-
-API development
-
-UI/UX
-
-randomness handling
-
-modern cybersecurity design
+This project is built with an offensive-security mindset, combining entropy, human-pattern detection, and hybrid attack simulation for accurate password evaluation.
