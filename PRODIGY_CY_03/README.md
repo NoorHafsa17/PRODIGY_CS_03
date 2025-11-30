@@ -120,9 +120,6 @@ Response
 • College / internship projects  
 
 
-
-Research demos
-
 9. Final Notes
 
 This project evaluates passwords using attacker-style logic:
