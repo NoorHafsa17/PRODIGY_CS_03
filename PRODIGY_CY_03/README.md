@@ -122,15 +122,15 @@ Response
 
 7. Why This Tool Is Different
 
-This table will render correctly:
+| Capability                  | Typical Checkers | This Tool |
+|-----------------------------|------------------|-----------|
+| Detect invented/human words | No               | Yes       |
+| Detect CamelCase            | No               | Yes       |
+| Pronounceability detection  | No               | Yes       |
+| PCFG-style modeling         | No               | Yes       |
+| Realistic crack-time        | No               | Yes       |
+| Validated strong suggestions| No               | Yes       |
 
-Capability	Typical Checkers	This Tool
-Detect invented/human words	No	Yes
-Detect CamelCase	No	Yes
-Pronounceability detection	No	Yes
-PCFG-style modeling	No	Yes
-Realistic crack-time	No	Yes
-Validated strong suggestions	No	Yes
 8. Use Cases
 
 Cybersecurity awareness
